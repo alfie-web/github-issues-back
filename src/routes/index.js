@@ -1,8 +1,8 @@
 import express from 'express'
 import cors from 'cors'
 import helmet from 'helmet'
-import morgan from 'morgan'
 
+import morganLogger from '../middlewares/morganLogger.js'
 import errorsHandler from '../middlewares/errorsHandler.js'
 import githubRoutes from './githubIssues.js'
 
@@ -19,9 +19,9 @@ export default function createRoutes(app) {
          contentSecurityPolicy: false,
       })
    )
-   app.use(morgan('dev'))
+   app.use(morganLogger)
 
    app.use('/api/github', githubRoutes)
-
+   
    app.use(errorsHandler)
 }
