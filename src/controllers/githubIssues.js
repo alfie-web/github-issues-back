@@ -4,7 +4,9 @@ import githubService from '../services/github.js'
 import sendSuccessfulResult from '../helpers/sendSuccessfulResult.js'
 
 const githubController = {
-   async getAllIssues(req, res, next) {
+   async getAll(req, res, next) {
+      res.actionType = 'get_issues'
+
       try {
          const { data } = await githubService.getAllIssues(req.query)
          const repo = await githubService.getRepositoryByName(req.query)
@@ -19,8 +21,10 @@ const githubController = {
       }
    },
 
-   async getIssueByNumber(req, res, next) {
+   async getByNumber(req, res, next) {
       const number = req.params.number
+      
+      res.actionType = 'get_issue'
 
       try {
          const { data } = await githubService.getIssueByNumber({ ...req.query, number })
