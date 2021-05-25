@@ -1,10 +1,11 @@
 import express from 'express'
 import cors from 'cors'
 import helmet from 'helmet'
-import morgan from 'morgan'
 
+import morganLogger from '../middlewares/morganLogger.js'
 import errorsHandler from '../middlewares/errorsHandler.js'
 import githubRoutes from './githubIssues.js'
+import logsRoutes from './logs.js'
 
 const corsOptions = {
    origin: [process.env.CLIENT_URL],
@@ -14,14 +15,11 @@ const corsOptions = {
 export default function createRoutes(app) {
    app.use(express.json())
    app.use(cors(corsOptions))
-   app.use(
-      helmet({
-         contentSecurityPolicy: false,
-      })
-   )
-   app.use(morgan('dev'))
+   app.use(helmet())
+   app.use(morganLogger)
 
    app.use('/api/github', githubRoutes)
+   app.use('/api', logsRoutes)
 
    app.use(errorsHandler)
 }

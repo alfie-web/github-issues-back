@@ -4,8 +4,6 @@ dotEnv.config()
 
 const DB_URL = String(process.env.DB_URL)
 
-console.log('DB_URL', DB_URL)
-
 const connectDB = () => {
    console.log('Connecting ...')
    mongoose

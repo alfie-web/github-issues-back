@@ -3,7 +3,7 @@ import githubController from '../controllers/githubIssues.js'
 
 const routes = new express.Router()
 
-routes.get('/issues', githubController.getAllIssues)
-routes.get('/issues/:number', githubController.getIssueByNumber)
+routes.get('/issues', githubController.getAll)
+routes.get('/issue/:number', githubController.getByNumber)
 
 export default routes

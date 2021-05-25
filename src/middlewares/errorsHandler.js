@@ -1,4 +1,6 @@
 const errorHandler = (error, req, res, next) => {
+   if (!error) return next()
+   
    console.log('Error status: ', error.status)
    console.log('Message: ', error.message)
 
