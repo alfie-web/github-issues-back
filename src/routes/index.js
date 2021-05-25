@@ -20,6 +20,6 @@ export default function createRoutes(app) {
 
    app.use('/api/github', githubRoutes)
    app.use('/api', logsRoutes)
-   
+
    app.use(errorsHandler)
 }

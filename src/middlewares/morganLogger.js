@@ -11,7 +11,7 @@ const morganLogger = morgan(function (tokens, req, res) {
       time: tokens['response-time'](req, res),
    }
 
-   logsController.create(data)
+   if (req.baseUrl + req.path !== '/api/logs') logsController.create(data)
 
    return [
       data.method,

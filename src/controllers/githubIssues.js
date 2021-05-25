@@ -11,10 +11,12 @@ const githubController = {
          const { data } = await githubService.getAllIssues(req.query)
          const repo = await githubService.getRepositoryByName(req.query)
 
-         sendSuccessfulResult({ res, message: 'success', data: {
+         sendSuccessfulResult({ 
+            res, 
+            message: 'success',
             issues: data,
-            total_issues_count: repo.data.open_issues_count
-         }})
+            totalIssuesCount: repo.data.open_issues_count
+         })
 
       } catch (error) {
          next(createError(400, 'Самсинг вент ронг'))

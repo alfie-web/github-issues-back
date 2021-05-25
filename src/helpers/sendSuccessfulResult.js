@@ -1,7 +1,7 @@
-const sendSuccessfulResult = ({ res, status = 200, message, data }) => {
+const sendSuccessfulResult = ({ res, status = 200, message, ...data }) => {
    res.status(status).json({
       message,
-      data,
+      ...data,
    })
 }
 
